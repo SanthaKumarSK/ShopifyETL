@@ -10,6 +10,8 @@ ShopifyETL provides a toolkit for extraction of data into an object as well as w
 * The foundation of this package aims to integrate with queueing systems as well as big data processes.
 * The operations, patterns, and code presented in this package is ready for cron-tab integrations to perform what ever special magic you may need (like daily sales reports tailored to your teams needs).
 
+<a href="#myPackage">_Why not the existing Shopify API package?_</a>
+
 Requirements:
 
 * Python 2.7.x (will port and test on Python 3 #helpWanted)
@@ -214,6 +216,44 @@ Using the boolean ```write``` in a method controls write (to file) on a per meth
 ## ExtractProducts <a name="ExtractProducts"></a>
 
 * ```extract_product()```: Product data.
+
+
+## Why not existing Python Packages<a name="myPackage"></a>
+
+I am vary familiar with all of the various packages on the market. Philosophically there is an effort to minimize use of 3rd party software and packages. Some of these packages may solve __your problem__ better and that is okay. They did not speed up my development and only hindered my quality and speed.
+
+It should be noted that the Requests library is a staple for Python and I appreciate the work and quality. Requests merely standardizes web connectivity. In reviewing various packages the "all things to all people" brings bloat and unnecessary complexity often via feature creep.
+
+By contrast ```ShopifyETL``` is more resistant to feature creep by encouraging highly abstracted and almost entirely decoupled work via the ```jobs``` directory and subclassing. The ```ShopifyCreds``` and ```Shopify``` classes are stable, having been in use for well over a year in my own development.
+
+The assumption is that a user of this package has probably built APIs, most probably has Requests already installed, used many APIs, knows the various ```URL``` libs, and has a distinct idea of what they need to get done. The user story for this package is:
+
+* User knows how to build API calls
+* User knows how to parse data
+* User knows Python
+* User knows the Shopify API well
+* User knows how to handle exceptions, timeouts, and other issues and probably already has a system in place (possibly inherited from a greater framework).
+
+To add bloat is not in my nature. Exceptional software is a product of knowing all your code, not "black box" middle ware. 
+
+The ```ShopifyETL``` library is drop-dead-simple. The pattern for use is:
+
+* Find the call I need to make via the docs.
+* Format the ```call``` and ```data```
+* Make the call via ```ShopifyETL```:
+
+```
+s = Shopify(ShopifyCreds())
+results = s.shopify_post(call=call, data=data)
+# so as you need w/results
+```
+
+No need to learn how someone mapped data to an ORM. No need to have all of the possible API calls "pre-mapped" waiting for a catastrophic failure when the API changes a little. No need to introduce another framework into what are commonly already complex systems. All I care about is the ```call```, ```data```, and the ```response/results```.  
+
+>Simplicity is the most difficult solution of all, be ready to embrace it when found.
+
+
+##License
 
 
 Author: ```datamafia.com```
