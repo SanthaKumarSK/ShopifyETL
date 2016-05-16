@@ -1,5 +1,7 @@
 # Shopify ETL
 
+<img src="https://circleci.com/gh/datamafia/ShopifyETL.svg?style=shield&circle-token=:circle-token" alt="Build Status"/>
+
 ShopifyETL provides a toolkit for extraction of data into an object as well as written JSON files. The transform and load duties specific to each Shopify use case, so you will need to write that part or hire me (_emoticon_). 
 
 ```ShopifyETL``` is not limited to extraction of information and a tool kit for adding transformation and loading of Shopify data. Also included is low level API functionality that will speed up development work using the Shopify API and Python. The basic tools available are of huge potential, for example:
